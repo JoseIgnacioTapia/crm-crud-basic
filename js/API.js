@@ -37,3 +37,14 @@ export const eliminarCliente = async (id) => {
     console.log(error);
   }
 };
+
+// Obtener un cliente por su ID
+export const obtenerCliente = async (id) => {
+  try {
+    const resultado = await fetch(`${url}/${id}`); // GET by default
+    const cliente = await resultado.json();
+    return cliente;
+  } catch (error) {
+    console.log(error);
+  }
+};
