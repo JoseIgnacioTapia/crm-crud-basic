@@ -1,13 +1,6 @@
 {
   "clientes": [
     {
-      "nombre": "José",
-      "email": "josignaciot@gmail.com",
-      "telefono": "03875017373",
-      "empresa": "HolaWorld",
-      "id": 1
-    },
-    {
       "nombre": "María",
       "email": "maria@maria",
       "telefono": "1234567",
