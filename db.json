@@ -2,14 +2,14 @@
   "clientes": [
     {
       "nombre": "María",
-      "email": "maria@maria",
+      "email": "maria@correo.com",
       "telefono": "1234567",
       "empresa": "HolaWorld",
       "id": 2
     },
     {
       "nombre": "Miguel",
-      "email": "miguel@miguel.com",
+      "email": "miguel@correo.com",
       "telefono": "3334444",
       "empresa": "HolaWorld",
       "id": 3

@@ -1,12 +1,13 @@
-import { obtenerCliente } from "./API.js";
+import { mostrarAlerta, validar } from "./funciones.js";
+import { obtenerCliente, editarCliente } from "./API.js";
 
 (function () {
   // Campos del formulario
-  const nombreInupt = document.querySelector("#nombre");
-  const emailInupt = document.querySelector("#email");
-  const empresaInupt = document.querySelector("#empresa");
-  const telefonoInupt = document.querySelector("#telefono");
-  const idInupt = document.querySelector("#id");
+  const nombreInput = document.querySelector("#nombre");
+  const emailInput = document.querySelector("#email");
+  const empresaInput = document.querySelector("#empresa");
+  const telefonoInput = document.querySelector("#telefono");
+  const idInput = document.querySelector("#id");
 
   document.addEventListener("DOMContentLoaded", async () => {
     const parametrosURL = new URLSearchParams(window.location.search);
@@ -16,15 +17,39 @@ import { obtenerCliente } from "./API.js";
     const cliente = await obtenerCliente(idCliente);
 
     mostrarCliente(cliente);
+
+    const formulario = document.querySelector("#formulario");
+    formulario.addEventListener("submit", validarCliente);
   });
 
   function mostrarCliente(cliente) {
     const { nombre, empresa, email, telefono, id } = cliente;
 
-    nombreInupt.value = nombre;
-    emailInupt.value = email;
-    empresaInupt.value = empresa;
-    telefonoInupt.value = telefono;
-    idInupt.value = id;
+    nombreInput.value = nombre;
+    emailInput.value = email;
+    empresaInput.value = empresa;
+    telefonoInput.value = telefono;
+    idInput.value = id;
+  }
+
+  function validarCliente(e) {
+    e.preventDefault();
+
+    const cliente = {
+      nombre: nombreInput.value,
+      email: emailInput.value,
+      telefono: telefonoInput.value,
+      empresa: empresaInput.value,
+      id: parseInt(idInput.value),
+    };
+
+    if (!validar(cliente)) {
+      // Mostrar mensaje
+      mostrarAlerta("Todos los campos son obligatorios");
+      return;
+    }
+
+    // Reescribe el objeto
+    editarCliente(cliente);
   }
 })();
